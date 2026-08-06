@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #121c32;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    background: #111625;
+    padding: 20px 40px;
+}
+
+nav h2 {
+    color: #0f65b8;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+section {
+    background: #1A2332;
+    padding: 25px;
+    margin-top: 30px;
+    border-radius: 12px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
