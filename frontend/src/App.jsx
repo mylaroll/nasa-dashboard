@@ -5,6 +5,7 @@ import Card from "./components/Card";
 
 function App() {
     const [apodData, setApodData] = useState(null);
+    const [loading, setLoad] = useState(true);
     const cardsData = [
         {
             id:"1",
@@ -25,6 +26,7 @@ function App() {
             let myObject = await fetch(file);
             let myData = await myObject.json();
             setApodData(myData);
+            setLoad(false);
         }
         getApodData("https://api.nasa.gov/planetary/apod?api_key=Jusq3dHNj6XS0j3ypUVa00QLYHwM7wb48MpMvAG3")
     }, []);
