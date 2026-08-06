@@ -1,8 +1,11 @@
 import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+
 function App() {
   return (
       <>
           <Navbar />
+          <Hero />
           <main>
             <h1>NASA Dashboard</h1>
             <p>Exploring space data with NASA APIs</p>
