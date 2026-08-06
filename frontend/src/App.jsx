@@ -3,24 +3,23 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Card from "./components/Card";
 
-const cardsData = [
-    {
-        id:"1",
-        title: "Astro Pic of the Day",
-        image: "https://placeholder.com",
-        description: "NASA chosen image of the day.",
-        extraInfo: "2/26/26"
-    },
-    {
-        id: "2",
-        title: "Exoplanets",
-        image: "https://placeholder.com",
-        description: "Different exoplanets that have been discovered."
-    }
-];
-
 function App() {
     const [apodData, setApodData] = useState(null);
+    const cardsData = [
+        {
+            id:"1",
+            title: (apodData && apodData.title) || "Astro Pic of the Day",
+            image: (apodData && apodData.url) || "https://placehold.net/600x400.png",
+            description: (apodData && apodData.explanation) || "NASA chosen image of the day.",
+            extraInfo: (apodData && apodData.date) || "2/26/26"
+        },
+        {
+            id: "2",
+            title: "Exoplanets",
+            image: "https://placeholder.com",
+            description: "Different exoplanets that have been discovered."
+        }
+    ];
     useEffect(() => {
         async function getApodData(file) {
             let myObject = await fetch(file);
