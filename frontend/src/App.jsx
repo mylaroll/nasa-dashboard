@@ -4,8 +4,17 @@ import Card from "./components/Card";
 import {useData} from "./hooks/useData.jsx";
 
 function App() {
-    const {data: apodData, loading:apodLoading, error:apodError} = useData("https://api.nasa.gov/planetary/apod?api_key=Jusq3dHNj6XS0j3ypUVa00QLYHwM7wb48MpMvAG3");
-    const {data:epicData, loading:epicLoading, error:epicError} = useData();
+    const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const {data: apodData, loading:apodLoading, error:apodError} = useData("http://localhost:3000/api/apod");
+    const {data:epicData, loading:epicLoading, error:epicError} = useData("http://localhost:3000/api/epic");
+    const epic = epicData ? getRandom(epicData) : null;
+    const getImage = (epic) => {
+        if (!epic) return null;
+        const date = epic.date.split(" ")[0];
+        const [year, month,day] = date.split("-");
+        return `https://epic.gsfc.nasa.gov/archive/enhanced/${year}/${month}/${day}/png/${epic.image}.png`
+    }
+    const epicImage = getImage(epic);
     const cardsData = [
         {
             id:"1",
@@ -19,10 +28,11 @@ function App() {
         },
         {
             id:"2",
-            title: (epicData && epicData.title) || "EPIC",
-            image: (epicData && epicData.url) || "https://placehold.net/600x400.png",
-            description: (epicData && epicData.caption) || "View unique perspectives of astronomical events.",
-            extraInfo: (epicData && epicData.date) || "2/26/26",
+            title: (epic && epic.image) || "EPIC",
+            mediaType: "pic",
+            media: (epicImage) || "https://placehold.net/600x400.png",
+            description: (epic && epic.caption) || "View unique perspectives of astronomical events.",
+            extraInfo: (epic && epic.date) || "2/26/26",
             loading: epicLoading,
             error: epicError
         }
