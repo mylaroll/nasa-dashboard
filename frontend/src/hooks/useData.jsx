@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-export function getData(url){
+export function useData(url){
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const[error,setError]= useState(null);
